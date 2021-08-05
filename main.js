@@ -4,7 +4,9 @@ let pauseBtn = document.querySelector(".pause");
 
 let minutes = document.querySelector("#minutes");
 let seconds = document.querySelector("#seconds");
+let hours = document.querySelector("#hours");
 
+let hour;
 let min;
 let sec = 0;
 let time;
@@ -15,9 +17,10 @@ function start() {
     watchIsRunning = true;
     time = setInterval(function () {
       sec++;
-      let { minute, second } = getTime(sec);
+      let { minute, second, hour } = getTime(sec);
       minutes.innerHTML = minute < 10 ? "0" + minute : minute;
       seconds.innerHTML = second < 10 ? "0" + second : second;
+      hours.innerHTML = hour < 10 ? "0" + hour : hour;
     }, 1000);
   }
 }
@@ -37,10 +40,11 @@ function pause() {
 function getTime(sec) {
   let minute = parseInt(sec / 60);
   let second = parseInt(sec % 60);
-
+  let hour = parseInt(sec / 3600);
   return {
     minute,
     second,
+    hour,
   };
 }
 
